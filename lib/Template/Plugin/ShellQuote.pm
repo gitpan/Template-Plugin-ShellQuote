@@ -6,7 +6,7 @@ use Template::Plugin::Filter;
 use base qw(Template::Plugin::Filter);
 use vars qw($VERSION $FILTER_NAME);
 
-$VERSION = '1.1';
+$VERSION = '1.2';
 $FILTER_NAME = 'shellquote';
 
 
@@ -18,20 +18,20 @@ Template::Plugin::ShellQuote - provides a Template Toolkit filter to shell quote
 
 =head1 SYNOPSIS
 
-	[% USE ShellQuote %]
-	#!/bin/sh
-	[% FILTER shellquote %]
-	all this text 
-	& this text 
-	also *this* text
-	will be quoted suitable for putting in a shell script
-	[% END %]
+    [% USE ShellQuote %]
+    #!/bin/sh
+    [% FILTER shellquote %]
+    all this text 
+    & this text 
+    also *this* text
+    will be quoted suitable for putting in a shell script
+    [% END %]
 
-	# this will do what you expect
-	[% somevar FILTER shellquote %]
+    # this will do what you expect
+    [% somevar FILTER shellquote %]
 
-	# suitably quote stuff for a comment
-	./some_command # Some comment [% somevar FILTER shellquote (comment => 1 ) %]
+    # suitably quote stuff for a comment
+    ./some_command # Some comment [% somevar FILTER shellquote (comment => 1 ) %]
 
 =head1 DESCRIPTION
 
@@ -78,13 +78,13 @@ sub init {
 # possibly extraneous cargo culting but it works so ...
 sub filter {
     my ($self, $text, @args) = @_;
-	my $config = (ref $args[-1] eq 'HASH')? pop @args : {};
-	
-	if ($config->{comment}) {
-		return shell_comment_quote $text; 
-	} else {
-		return shell_quote $text;
-	}
+    my $config = (ref $args[-1] eq 'HASH')? pop @args : {};
+    
+    if ($config->{comment}) {
+        return shell_comment_quote $text; 
+    } else {
+        return shell_quote $text;
+    }
 }
 
 1;
