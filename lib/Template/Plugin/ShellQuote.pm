@@ -6,7 +6,7 @@ use Template::Plugin::Filter;
 use base qw(Template::Plugin::Filter);
 use vars qw($VERSION $FILTER_NAME);
 
-$VERSION = '1.0';
+$VERSION = '1.1';
 $FILTER_NAME = 'shellquote';
 
 
